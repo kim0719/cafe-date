@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☕ Our Little Café</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#ffd6e7;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:#6b2145;
+}
+
+.card{
+width:90%;
+max-width:420px;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 0 15px rgba(0,0,0,.15);
+text-align:center;
+}
+
+input{
+width:80%;
+padding:10px;
+border-radius:10px;
+border:2px solid pink;
+margin:10px 0;
+text-align:center;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ff5c9a;
+color:white;
+margin:8px;
+cursor:pointer;
+}
+
+.page{display:none;}
+.show{display:block;}
+
+.menu button{
+display:block;
+width:90%;
+margin:10px auto;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<!-- PASSCODE -->
+<div id="pass" class="page show">
+<h2>☕ Our Little Café</h2>
+<p><b>Reserved for</b><br>kim:) ❤️ Zero六</p>
+
+<p><b>Before we prepare your order...</b></p>
+
+<p>When was our first meet-up?</p>
+
+<input id="code" placeholder="DDMMYY">
+
+<br>
+
+<button onclick="unlock()">☕ Unlock Our Café</button>
+
+<p id="msg" style="color:red;"></p>
+</div>
+
+<!-- BELL -->
+<div id="bell" class="page">
+<h2>✅ Reservation Confirmed</h2>
+
+<p>Welcome, Zero六! 💗</p>
+
+<p>Ring the bell to call the waiter.</p>
+
+<button onclick="waiter()">🔔 Ring Bell</button>
+</div>
+
+<!-- WAITER -->
+<div id="waiter" class="page">
+<h2>🛎️ Welcome!</h2>
+
+<p>
+Welcome to Our Little Café.<br><br>
+Every item on today's menu was prepared especially for you. ☕💕
+</p>
+
+<button onclick="menu()">📖 Open Menu</button>
+</div>
+
+<!-- MENU -->
+<div id="menu" class="page menu">
+
+<h2>☕ Today's Menu</h2>
+
+<button onclick="item('🍓 Sweet Memories','The sweetest moments are the ones I spent with you. Thank you for every memory. ❤️')">🍓 Strawberry Cheesecake</button>
+
+<button onclick="item('☕ Signature Latte','You always make me smile. You stay with me. You make every ordinary day feel special. ❤️')">☕ Signature Latte</button>
+
+<button onclick="item('🍰 Chef\\'s Special','💌 Chef\\'s Note<br><br>This dish was made with the most important ingredient...<br><br><b>Love.</b><br><br><b>I love you, langga. ❤️</b>')">🍰 Chef's Special</button>
+
+<button onclick="item('🌙 Midnight Hot Chocolate','May we continue making beautiful memories together. Happy 2nd Anniversary. ❤️')">🌙 Midnight Hot Chocolate</button>
+
+</div>
+
+<!-- ITEM -->
+<div id="view" class="page">
+<h2 id="title"></h2>
+<p id="text"></p>
+
+<button onclick="menu()">⬅ Back to Menu</button>
+</div>
+
+</div>
+
+<script>
+
+function show(id){
+document.querySelectorAll(".page").forEach(x=>x.classList.remove("show"));
+document.getElementById(id).classList.add("show");
+}
+
+function unlock(){
+if(document.getElementById("code").value=="060925"){
+show("bell");
+}else{
+document.getElementById("msg").innerHTML="Wrong passcode ❤️";
+}
+}
+
+function waiter(){
+show("waiter");
+}
+
+function menu(){
+show("menu");
+}
+
+function item(t,m){
+document.getElementById("title").innerHTML=t;
+document.getElementById("text").innerHTML=m;
+show("view");
+}
+
+</script>
+
+</body>
+</html>
